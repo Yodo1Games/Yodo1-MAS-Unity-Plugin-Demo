@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependencies>
+    <androidPackages>
+        <repositories>
+            <repository>https://dl.bintray.com/yodo1/MAS-Android</repository>
+            <repository>https://dl.bintray.com/yodo1/android-sdk</repository>
+            <repository>https://dl.bintray.com/ironsource-mobile/android-sdk</repository>
+            <repository>https://dl.bintray.com/ironsource-mobile/android-adapters</repository>
+        </repositories>
+        <androidPackage spec="com.yodo1.mas:standard:4.0.1.2" />
+    </androidPackages>
+</dependencies>
