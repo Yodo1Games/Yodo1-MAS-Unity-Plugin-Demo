@@ -1,6 +1,6 @@
 <dependencies>
   <packages>
-    <package>com.yodo1.mas:standard:4.0.1.2</package>
+    <package>com.yodo1.mas:full:4.0.3.0</package>
   </packages>
   <files />
   <settings>

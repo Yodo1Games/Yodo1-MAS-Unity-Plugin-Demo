@@ -14,68 +14,82 @@ namespace Yodo1.MAS
     public class Yodo1PostProcess
     {
         private static string[] mSKAdNetworkId = new string[] {
-            "cstr6suwn9.skadnetwork",
+            "275upjj5gd.skadnetwork",
             "2u9pt9hc89.skadnetwork",
+            "3rd42ekr43.skadnetwork",
             "4468km3ulz.skadnetwork",
+            "44jx6755aq.skadnetwork",
             "4fzdc2evr5.skadnetwork",
+            "4pfyvq9l8r.skadnetwork",
+            "5lm9lj6jb7.skadnetwork",
+            "6g9af3uyq4.skadnetwork",
+            "7rz58n8ntl.skadnetwork",
             "7ug5zh24hu.skadnetwork",
             "8s468mfl3y.skadnetwork",
+            "9nlqeag3gk.skadnetwork",
             "9rd848q2bz.skadnetwork",
             "9t245vhmpl.skadnetwork",
-            "av6w8kgt66.skadnetwork",
-            "f38h382jlk.skadnetwork",
+            "c6k4g5qg8m.skadnetwork",
+            "cg4yq2srnc.skadnetwork",
+            "ejvt5qm6ak.skadnetwork",
+            "g28c52eehv.skadnetwork",
             "hs6bdukanm.skadnetwork",
-            "kbd757ywx3.skadnetwork",
-            "ludvb6z3bs.skadnetwork",
+            "klf5c3l5u5.skadnetwork",
             "m8dbw4sv7c.skadnetwork",
             "mlmmfzh3r3.skadnetwork",
+            "mtkv5xtk9e.skadnetwork",
+            "ppxm28t8ap.skadnetwork",
             "prcb7njmu6.skadnetwork",
+            "rx5hdcabgc.skadnetwork",
             "t38b2kh725.skadnetwork",
             "tl55sbb4fm.skadnetwork",
-            "wzmmz9fp6w.skadnetwork",
+            "u679fj5vs4.skadnetwork",
+            "uw77j35x4d.skadnetwork",
+            "v72qych5uu.skadnetwork",
             "yclnxrl5pm.skadnetwork",
+            "cstr6suwn9.skadnetwork",
+            "av6w8kgt66.skadnetwork",
+            "f38h382jlk.skadnetwork",
+            "kbd757ywx3.skadnetwork",
+            "ludvb6z3bs.skadnetwork",
+            "wzmmz9fp6w.skadnetwork",
             "ydx93a7ass.skadnetwork",
             "n38lu8286q.skadnetwork",
             "v9wttpbfk9.skadnetwork",
+            "24t9a8vw3c.skadnetwork",
+            "252b5q8x7y.skadnetwork",
+            "3qy4746246.skadnetwork",
             "3sh42y64q3.skadnetwork",
-            "424m5254lk.skadnetwork",
-            "44jx6755aq.skadnetwork",
-            "4pfyvq9l8r.skadnetwork",
+            "5a6flpkh64.skadnetwork",
             "5l3tpt7t6e.skadnetwork",
-            "5lm9lj6jb7.skadnetwork",
-            "7rz58n8ntl.skadnetwork",
-            "c6k4g5qg8m.skadnetwork",
-            "cg4yq2srnc.skadnetwork",
+            "9g2aggbj52.skadnetwork",
+            "dzg6xy7pwj.skadnetwork",
             "f73kdq92p3.skadnetwork",
-            "ggvn48r87g.skadnetwork",
-            "klf5c3l5u5.skadnetwork",
-            "p78axxw29g.skadnetwork",
-            "ppxm28t8ap.skadnetwork",
-            "uw77j35x4d.skadnetwork",
-            "v72qych5uu.skadnetwork",
-            "w9q455wk68.skadnetwork",
+            "hdw39hrw9y.skadnetwork",
             "wg4vff78zm.skadnetwork",
+            "y45688jllp.skadnetwork",
+            "424m5254lk.skadnetwork",
+            "ggvn48r87g.skadnetwork",
+            "p78axxw29g.skadnetwork",
+            "w9q455wk68.skadnetwork",
             "su67r6k2v3.skadnetwork",
+            "6xzpu9s2p8.skadnetwork",
+            "737z793b9f.skadnetwork",
+            "glqzh8vgby.skadnetwork",
+            "n9x2a789qt.skadnetwork",
             "578prtvx9j.skadnetwork",
             "ecpz2srf59.skadnetwork",
             "22mmun2rn5.skadnetwork",
             "238da6jt44.skadnetwork",
-            "24t9a8vw3c.skadnetwork",
-            "3qy4746246.skadnetwork",
-            "3rd42ekr43.skadnetwork",
             "44n7hlldy6.skadnetwork",
             "488r3q3dtq.skadnetwork",
             "4dzt52r2t5.skadnetwork",
-            "5a6flpkh64.skadnetwork",
             "bvpn9ufa9b.skadnetwork",
-            "g28c52eehv.skadnetwork",
-            "glqzh8vgby.skadnetwork",
             "lr83yxwka7.skadnetwork",
             "s39g8k73mm.skadnetwork",
             "v79kvwwj4g.skadnetwork",
             "zmvfpc5aq8.skadnetwork",
-            "gta9lk7p23.skadnetwork",
-            "n9x2a789qt.skadnetwork",
+            "gta9lk7p23.skadnetwork"
         };
 
         [PostProcessBuild()]
@@ -183,6 +197,12 @@ namespace Yodo1.MAS
             if (attPrivacy == null)
             {
                 rootDict.SetString("NSUserTrackingUsageDescription", "This identifier will be used to deliver personalized ads to you.");
+            }
+
+            PlistElementString bluetoothPrivacy = (PlistElementString)rootDict["NSBluetoothAlwaysUsageDescription"];
+            if (bluetoothPrivacy == null)
+            {
+                rootDict.SetString("NSBluetoothAlwaysUsageDescription", "Some ad content may require access to the location for an interactive ad experience.");
             }
 
             File.WriteAllText(plistPath, plist.WriteToString());
@@ -321,6 +341,163 @@ namespace Yodo1.MAS
                 File.Copy(inputFile, outputFile);
             }
             ValidateManifest(settings);
+        }
+
+        static void Yodo1ValidateGradle(string path)
+        {
+            Debug.Log("[Yodo1 Mas] path: " + path);
+            var gradlePath = Path.Combine(path, PlayerSettings.productName + "/build.gradle");
+            ValidateGradlePluginVersion_(gradlePath);
+
+        }
+
+        public static void GenerateGradle()
+        {
+            var outputFile = Path.Combine(Application.dataPath, "Plugins/Android/mainTemplate.gradle");
+            if (!File.Exists(outputFile))
+            {
+                var inputFile = Path.Combine(EditorApplication.applicationContentsPath, "PlaybackEngines/androidplayer/Tools/GradleTemplates/mainTemplate.gradle");
+                if (!File.Exists(inputFile))
+                {
+                    inputFile = Path.Combine(EditorApplication.applicationContentsPath, "PlaybackEngines/AndroidPlayer/Tools/GradleTemplates/mainTemplate.gradle");
+                }
+                if (!File.Exists(inputFile))
+                {
+                    string s = EditorApplication.applicationPath;
+                    int index = s.LastIndexOf("/");
+                    s = s.Substring(0, index + 1);
+                    inputFile = Path.Combine(s, "PlaybackEngines/AndroidPlayer/Tools/GradleTemplates/mainTemplate.gradle");
+                }
+                if (!File.Exists(inputFile))
+                {
+                    string s = EditorApplication.applicationPath;
+                    int index = s.LastIndexOf("/");
+                    s = s.Substring(0, index + 1);
+                    inputFile = Path.Combine(s, "PlaybackEngines/AndroidPlayer//Tools/GradleTemplates/mainTemplate.gradle");
+                }
+                File.Copy(inputFile, outputFile);
+            }
+
+            if (File.Exists(outputFile))
+            {
+                ValidateGradlePluginVersion_(outputFile);
+            }
+        }
+
+
+
+        private static void ValidateGradlePluginVersion_(string projectGradlePath)
+        {
+
+            Debug.Log("[Yodo1 Mas] projectGradlePath: " + projectGradlePath);
+            StreamReader streamReader1 = new StreamReader(projectGradlePath);
+            string text_all = streamReader1.ReadToEnd();
+            streamReader1.Close();
+
+            bool changed = false;
+            string oldLineStr = string.Empty;
+            string newLineStr = string.Empty;
+
+            string[] array = text_all.Split(System.Environment.NewLine.ToCharArray());
+            for (int i = 0; i < array.Length; i++)
+            {
+                string str = array[i];
+                if (str.Contains("com.android.tools.build:gradle"))
+                {
+                    oldLineStr = str;
+                    break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(oldLineStr) && oldLineStr.Contains(":") && oldLineStr.Contains("'"))
+            {
+                var temp = oldLineStr.Replace("'", "");
+                string[] tempArray = temp.Split(":".ToCharArray());
+                if (tempArray != null && tempArray.Length > 0)
+                {
+                    var oldPluginVersion = tempArray[tempArray.Length - 1]; // such as 3.4.0
+                    string resultPluginVersion = ValidatePluginVersionStr_(oldPluginVersion);
+                    if (resultPluginVersion != null && !oldPluginVersion.Equals(resultPluginVersion))
+                    {
+                        newLineStr = oldLineStr.Replace(oldPluginVersion, resultPluginVersion);
+                        text_all = text_all.Replace(oldLineStr, newLineStr);
+                        changed = true;
+                    }
+                }
+
+            }
+
+            // deal with multiDexEnabled and sourceCompatibility 1.8
+            if (!text_all.Contains("multiDexEnabled true") && text_all.Contains("applicationId"))
+            {
+                string newText = "multiDexEnabled true " + System.Environment.NewLine +
+                    "\t\t" + "applicationId";
+                text_all = text_all.Replace("applicationId", newText);
+                changed = true;
+            }
+            if (!text_all.Contains("sourceCompatibility") && text_all.Contains("defaultConfig"))
+            {
+                string newText = "compileOptions { " + System.Environment.NewLine +
+                    "\t\t" + "sourceCompatibility JavaVersion.VERSION_1_8 " + System.Environment.NewLine +
+                    "\t\t" + "targetCompatibility JavaVersion.VERSION_1_8 " + System.Environment.NewLine +
+                    "\t" + "} " + System.Environment.NewLine +
+                    "\t" + "defaultConfig";
+                text_all = text_all.Replace("defaultConfig", newText);
+                changed = true;
+            }
+
+
+            if (changed)
+            {
+                StreamWriter streamWriter = new StreamWriter(projectGradlePath);
+                streamWriter.Write(text_all);
+                streamWriter.Close();
+                Debug.Log("[Yodo1 Mas] changed gradle plugin version from " + oldLineStr + " to " + newLineStr);
+            }
+
+
+        }
+
+        private static string ValidatePluginVersionStr_(string oldPluginVersion)
+        {
+            if (!oldPluginVersion.Contains("."))
+            {
+                return null;
+            }
+
+            var versionNumStr = oldPluginVersion.Replace(".", "");
+            int oldVerionNum = int.Parse(versionNumStr);
+            int minVersionNum = 330;
+
+            if (oldVerionNum < minVersionNum)
+            {
+                Debug.Log("[Yodo1 Mas] need to use the version of Unity as follows:" + System.Environment.NewLine +
+                    "Unity 2017 starting from 2017.4.38f1" + System.Environment.NewLine +
+                    "Unity 2018 starting from 2018.4.4f1" + System.Environment.NewLine +
+                    "Unity 2019 starting from 2019.1.7f1" + System.Environment.NewLine +
+                    "Unity 2020 all version");
+                return null;
+            }
+
+            if (oldVerionNum > 410)
+            {
+                Debug.Log("[Yodo1 Mas] no need do anything");
+                return null;
+            }
+
+
+            string[] resultArray = { "3.3.3", "3.4.3", "3.5.4", "3.6.4", "4.0.1" };
+            string subOldPluginVersion = oldPluginVersion.Substring(0, oldPluginVersion.LastIndexOf("."));
+            for (int i = 0; i < resultArray.Length; i++)
+            {
+                string result = resultArray[i];
+                if (!result.Equals(oldPluginVersion) && result.StartsWith(subOldPluginVersion))
+                {
+                    return result;
+                }
+            }
+
+            return null;
         }
 
         public static bool ValidateManifest(Yodo1AdSettings settings)
