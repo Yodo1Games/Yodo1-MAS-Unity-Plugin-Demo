@@ -8,16 +8,25 @@
             url "https://maven.google.com"
         }
         maven {
-            url "https://dl.bintray.com/yodo1/MAS-Android" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:9
+            url "https://dl.bintray.com/yodo1/MAS-Android" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
         }
         maven {
-            url "https://dl.bintray.com/yodo1/android-sdk" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:9
+            url "https://dl.bintray.com/yodo1/android-sdk" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
         }
         maven {
-            url "https://dl.bintray.com/ironsource-mobile/android-sdk" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:9
+            url "https://dl.bintray.com/ironsource-mobile/android-sdk" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
         }
         maven {
-            url "https://dl.bintray.com/ironsource-mobile/android-adapters" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:9
+            url "https://dl.bintray.com/ironsource-mobile/android-adapters" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
+        }
+        maven {
+            url "https://dl.bintray.com/mintegral-official/mintegral_ad_sdk_android_for_oversea" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
+        }
+        maven {
+            url "https://dl.bintray.com/mintegral-official/Andorid_ad_SDK_for_china" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
+        }
+        maven {
+            url "https://fyber.bintray.com/marketplace" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
         }
         mavenLocal()
         jcenter()
@@ -31,7 +40,7 @@ apply plugin: 'com.android.library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 // Android Resolver Dependencies Start
-    implementation 'com.yodo1.mas:standard:4.0.1.2' // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:10
+    implementation 'com.yodo1.mas:full:4.0.3.0' // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:13
 // Android Resolver Dependencies End
 **DEPS**}
 

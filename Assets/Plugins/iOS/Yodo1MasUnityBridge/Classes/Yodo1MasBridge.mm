@@ -320,11 +320,11 @@ void UnityMasInitWithAppKey(const char* appKey,const char* gameObjectName, const
     [[Yodo1MasBridge sharedInstance] initWithAppId:m_appKey successful:^{
         NSString* data = [Yodo1MasBridge convertToInitJsonString:1 masError:nil];
         NSString* msg = [Yodo1MasBridge getSendMessage:0 data:data];
-        UnitySendMessage(gameObjectName, callbackMethodName, [msg cStringUsingEncoding:NSUTF8StringEncoding]);
+        UnitySendMessage([kYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [kYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
     } fail:^(Yodo1MasError * _Nonnull error) {
         NSString* data = [Yodo1MasBridge convertToInitJsonString:0 masError:error];
         NSString* msg = [Yodo1MasBridge getSendMessage:0 data:data];
-        UnitySendMessage(gameObjectName, callbackMethodName, [msg cStringUsingEncoding:NSUTF8StringEncoding]);
+        UnitySendMessage([kYodo1MasGameObject cStringUsingEncoding:NSUTF8StringEncoding], [kYodo1MasMethodName cStringUsingEncoding:NSUTF8StringEncoding], [msg cStringUsingEncoding:NSUTF8StringEncoding]);
     }];
 }
 

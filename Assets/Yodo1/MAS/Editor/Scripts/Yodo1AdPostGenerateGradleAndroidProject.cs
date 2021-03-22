@@ -124,12 +124,116 @@ namespace Yodo1.MAS
         static void Yodo1ValidateGradle(string path)
         {
             var gradlePath = Path.Combine(path, "build.gradle");
+            ValidateGradlePluginVersion(path);
             if (gradlePath.Contains("unityLibrary"))
             {
                 gradlePath = gradlePath.Replace("unityLibrary", "launcher");
             }
             Debug.LogFormat("[Yodo1 Mas] Updating gradle for Play Instant: {0}", gradlePath);
             WriteBelow(gradlePath, "defaultConfig {", "\t\tmultiDexEnabled true");
+        }
+
+        static void ValidateGradlePluginVersion(string path)
+        {
+            if(path.Contains("unityLibrary"))
+            {
+                var projectPath = path.Replace("unityLibrary", "");
+                var projectGradlePath = Path.Combine(projectPath, "build.gradle");
+                ValidateGradlePluginVersion_(projectGradlePath);
+            }
+            else
+            {
+                var projectGradlePath = Path.Combine(path, "build.gradle");
+                ValidateGradlePluginVersion_(projectGradlePath);
+            }
+        }
+
+        private static void ValidateGradlePluginVersion_(string projectGradlePath)
+        {
+
+            //Debug.LogError("[ValidateGradlePluginVersion_] projectGradlePath: " + projectGradlePath);
+            StreamReader streamReader1 = new StreamReader(projectGradlePath);
+            string text_all = streamReader1.ReadToEnd();
+            streamReader1.Close();
+
+            bool changed = false;
+            string oldLineStr = string.Empty;
+            string newLineStr = string.Empty;
+
+            string[] array = text_all.Split(System.Environment.NewLine.ToCharArray());
+            for (int i = 0; i < array.Length; i++)
+            {
+                string str = array[i];
+                if (str.Contains("com.android.tools.build:gradle"))
+                {
+                    oldLineStr = str;
+                    break;
+                }
+            }
+
+            if(!string.IsNullOrEmpty(oldLineStr) && oldLineStr.Contains(":") && oldLineStr.Contains("'"))
+            {
+                var temp = oldLineStr.Replace("'", "");
+                string[] tempArray = temp.Split(":".ToCharArray());
+                if(tempArray != null && tempArray.Length > 0)
+                {
+                    var oldPluginVersion = tempArray[tempArray.Length - 1]; // such as 3.4.0
+                    string resultPluginVersion = ValidatePluginVersionStr_(oldPluginVersion);
+                    if(resultPluginVersion != null && !oldPluginVersion.Equals(resultPluginVersion))
+                    {
+                        newLineStr = oldLineStr.Replace(oldPluginVersion, resultPluginVersion);
+                        changed = true;
+                    }
+                }
+
+            }
+
+            if (changed)
+            {
+                text_all = text_all.Replace(oldLineStr, newLineStr);
+                StreamWriter streamWriter = new StreamWriter(projectGradlePath);
+                streamWriter.Write(text_all);
+                streamWriter.Close();
+                Debug.Log("[Yodo1 Mas] changed gradle plugin version from " + oldLineStr + " to " + newLineStr);
+                //Debug.LogError("[ValidateGradlePluginVersion_] projectGradlePath:  after changed text_all:  " +  text_all );
+            }
+        }
+
+        private static string ValidatePluginVersionStr_(string oldPluginVersion)
+        {
+            if(!oldPluginVersion.Contains("."))
+            {
+                return null;
+            }
+
+            var versionNumStr = oldPluginVersion.Replace(".", "");
+            int oldVerionNum = int.Parse(versionNumStr);
+            int minVersionNum = 330;
+
+            if(oldVerionNum < minVersionNum)
+            {
+                Debug.LogError("[Yodo1 Mas] the gradle plugin verison is to low ! you need to update the gradle version: " );
+                return null;
+            }
+
+            if(oldVerionNum > 410)
+            {
+                return null;
+            }
+
+
+            string[] resultArray = { "3.3.3", "3.4.3", "3.5.4", "3.6.4", "4.0.1"};
+            string subOldPluginVersion = oldPluginVersion.Substring(0, oldPluginVersion.LastIndexOf("."));
+            for(int i=0; i<resultArray.Length; i++)
+            {
+                string result = resultArray[i];
+                if(!result.Equals(oldPluginVersion) && result.StartsWith(subOldPluginVersion))
+                {
+                    return result;
+                }
+            }
+
+            return null;
         }
 
         static bool WriteBelow(string filePath, string below, string text)

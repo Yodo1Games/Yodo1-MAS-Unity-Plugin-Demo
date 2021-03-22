@@ -212,6 +212,7 @@ namespace Yodo1.MAS
 #if UNITY_2019_1_OR_NEWER
 #else
                     Yodo1PostProcess.ValidateManifest(this.adSettings);
+                    Yodo1PostProcess.GenerateGradle();
 #endif
                 }
                 else
