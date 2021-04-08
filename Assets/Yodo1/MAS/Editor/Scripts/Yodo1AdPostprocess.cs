@@ -48,6 +48,7 @@ namespace Yodo1.MAS
             "v72qych5uu.skadnetwork",
             "yclnxrl5pm.skadnetwork",
             "cstr6suwn9.skadnetwork",
+            "5a6flpkh64.skadnetwork",
             "av6w8kgt66.skadnetwork",
             "f38h382jlk.skadnetwork",
             "kbd757ywx3.skadnetwork",
@@ -58,37 +59,56 @@ namespace Yodo1.MAS
             "v9wttpbfk9.skadnetwork",
             "24t9a8vw3c.skadnetwork",
             "252b5q8x7y.skadnetwork",
+            "32z4fx6l9h.skadnetwork",
             "3qy4746246.skadnetwork",
             "3sh42y64q3.skadnetwork",
-            "5a6flpkh64.skadnetwork",
             "5l3tpt7t6e.skadnetwork",
             "9g2aggbj52.skadnetwork",
             "dzg6xy7pwj.skadnetwork",
             "f73kdq92p3.skadnetwork",
+            "f7s53z58qe.skadnetwork",
             "hdw39hrw9y.skadnetwork",
             "wg4vff78zm.skadnetwork",
             "y45688jllp.skadnetwork",
             "424m5254lk.skadnetwork",
+            "578prtvx9j.skadnetwork",
+            "e5fvkxwrpn.skadnetwork",
             "ggvn48r87g.skadnetwork",
             "p78axxw29g.skadnetwork",
+            "pwa73g5rt2.skadnetwork",
             "w9q455wk68.skadnetwork",
             "su67r6k2v3.skadnetwork",
             "6xzpu9s2p8.skadnetwork",
             "737z793b9f.skadnetwork",
             "glqzh8vgby.skadnetwork",
             "n9x2a789qt.skadnetwork",
-            "578prtvx9j.skadnetwork",
-            "ecpz2srf59.skadnetwork",
+            "r26jy69rpl.skadnetwork",
             "22mmun2rn5.skadnetwork",
             "238da6jt44.skadnetwork",
             "44n7hlldy6.skadnetwork",
             "488r3q3dtq.skadnetwork",
-            "4dzt52r2t5.skadnetwork",
-            "bvpn9ufa9b.skadnetwork",
+            "523jb4fst2.skadnetwork",
+            "52fl2v3hgk.skadnetwork",
+            "5tjdwbrq8w.skadnetwork",
+            "97r2b46745.skadnetwork",
+            "9yg77x724h.skadnetwork",
+            "cj5566h2ga.skadnetwork",
+            "ecpz2srf59.skadnetwork",
+            "gvmwg8q7h5.skadnetwork",
             "lr83yxwka7.skadnetwork",
+            "mls7yz5dvl.skadnetwork",
+            "n66cz3y3bx.skadnetwork",
+            "nzq8sh4pbs.skadnetwork",
+            "pu4na253f3.skadnetwork",
             "s39g8k73mm.skadnetwork",
             "v79kvwwj4g.skadnetwork",
+            "xy9t38ct57.skadnetwork",
+            "yrqqpx2mcb.skadnetwork",
+            "z4gj7hsk7h.skadnetwork",
             "zmvfpc5aq8.skadnetwork",
+            "4dzt52r2t5.skadnetwork",
+            "bvpn9ufa9b.skadnetwork",
+            "7953jerfzd.skadnetwork",
             "gta9lk7p23.skadnetwork"
         };
 
@@ -133,7 +153,7 @@ namespace Yodo1.MAS
                 return false;
             }
 
-            if (string.IsNullOrEmpty(settings.iOSSettings.AppKey))
+            if (string.IsNullOrEmpty(settings.iOSSettings.AppKey.Trim()))
             {
                 string message = "MAS iOS AppKey is null, please check the configuration.";
                 Debug.LogError("[Yodo1 Mas] " + message);
@@ -141,7 +161,7 @@ namespace Yodo1.MAS
                 return false;
             }
 
-            if (settings.iOSSettings.GlobalRegion && string.IsNullOrEmpty(settings.iOSSettings.AdmobAppID))
+            if (settings.iOSSettings.GlobalRegion && string.IsNullOrEmpty(settings.iOSSettings.AdmobAppID.Trim()))
             {
                 string message = "MAS iOS AdMob App ID is null, please check the configuration.";
                 Debug.LogError("[Yodo1 Mas] " + message);
@@ -288,7 +308,7 @@ namespace Yodo1.MAS
                 return false;
             }
 
-            if (string.IsNullOrEmpty(settings.androidSettings.AppKey))
+            if (string.IsNullOrEmpty(settings.androidSettings.AppKey.Trim()))
             {
                 string message = "MAS Android AppKey is null, please check the configuration.";
                 Debug.LogError("[Yodo1 Mas] " + message);
@@ -296,7 +316,7 @@ namespace Yodo1.MAS
                 return false;
             }
 
-            if (settings.androidSettings.ChineseAndroidStores && string.IsNullOrEmpty(settings.androidSettings.Channel))
+            if (settings.androidSettings.ChineseAndroidStores && string.IsNullOrEmpty(settings.androidSettings.Channel.Trim()))
             {
                 string message = "MAS Android Channel is null, please check the configuration.";
                 Debug.LogError("[Yodo1 Mas] " + message);
@@ -304,7 +324,7 @@ namespace Yodo1.MAS
                 return false;
             }
 
-            if (settings.androidSettings.GooglePlayStore && string.IsNullOrEmpty(settings.androidSettings.AdmobAppID))
+            if (settings.androidSettings.GooglePlayStore && string.IsNullOrEmpty(settings.androidSettings.AdmobAppID.Trim()))
             {
                 string message = "MAS Android AdMob App ID is null, please check the configuration.";
                 Debug.LogError("[Yodo1 Mas] " + message);
@@ -542,7 +562,7 @@ namespace Yodo1.MAS
             //Add AdMob App ID
             if (settings.androidSettings.GooglePlayStore)
             {
-                string admobAppIdValue = settings.androidSettings.AdmobAppID;
+                string admobAppIdValue = settings.androidSettings.AdmobAppID.Trim();
                 if (string.IsNullOrEmpty(admobAppIdValue))
                 {
                     Debug.LogError("[Yodo1 Mas] MAS Android AdMob App ID is null, please check the configuration.");
@@ -566,7 +586,7 @@ namespace Yodo1.MAS
             string channelValue = string.Empty;
             if (settings.androidSettings.ChineseAndroidStores)
             {
-                channelValue = settings.androidSettings.Channel;
+                channelValue = settings.androidSettings.Channel.Trim();
                 if (string.IsNullOrEmpty(channelValue))
                 {
                     Debug.LogError("[Yodo1 Mas] MAS Android Channel is null, please check the configuration.");

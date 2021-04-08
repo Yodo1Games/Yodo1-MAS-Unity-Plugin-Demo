@@ -95,8 +95,8 @@ namespace Yodo1.MAS
 
             GUILayout.BeginVertical(gUIStyle, new GUILayoutOption[0]);
             //Set AppKey
-            this.adSettings.androidSettings.AppKey = EditorGUILayout.TextField("MAS App Key", this.adSettings.androidSettings.AppKey, new GUILayoutOption[0]);
-            if (string.IsNullOrEmpty(this.adSettings.androidSettings.AppKey))
+            this.adSettings.androidSettings.AppKey = EditorGUILayout.TextField("MAS App Key", this.adSettings.androidSettings.AppKey.Trim(), new GUILayoutOption[0]);
+            if (string.IsNullOrEmpty(this.adSettings.androidSettings.AppKey.Trim()))
             {
                 EditorGUILayout.HelpBox("Please fill in the MAS app key correctly, you can find your app key on the MAS dashboard.", MessageType.Error);
             }
@@ -114,8 +114,8 @@ namespace Yodo1.MAS
             //Google Play Store
             //this.adSettings.androidSettings.GooglePlayStore = EditorGUILayout.BeginToggleGroup("Google Play-Global", this.adSettings.androidSettings.GooglePlayStore);
             //Set AdMob App ID
-            this.adSettings.androidSettings.AdmobAppID = EditorGUILayout.TextField("AdMob App ID", this.adSettings.androidSettings.AdmobAppID, new GUILayoutOption[0]);
-            if (string.IsNullOrEmpty(this.adSettings.androidSettings.AdmobAppID))
+            this.adSettings.androidSettings.AdmobAppID = EditorGUILayout.TextField("AdMob App ID", this.adSettings.androidSettings.AdmobAppID.Trim(), new GUILayoutOption[0]);
+            if (string.IsNullOrEmpty(this.adSettings.androidSettings.AdmobAppID.Trim()))
             {
                 EditorGUILayout.HelpBox("A null or incorrect value will cause a crash when it builds. Please make sure to copy Admob App ID from MAS dashboard.", MessageType.Info);
             }
@@ -156,8 +156,8 @@ namespace Yodo1.MAS
             GUILayout.BeginVertical(gUIStyle, new GUILayoutOption[0]);
 
             //Set AppKey
-            this.adSettings.iOSSettings.AppKey = EditorGUILayout.TextField("MAS App Key", this.adSettings.iOSSettings.AppKey, new GUILayoutOption[0]);
-            if (string.IsNullOrEmpty(this.adSettings.iOSSettings.AppKey))
+            this.adSettings.iOSSettings.AppKey = EditorGUILayout.TextField("MAS App Key", this.adSettings.iOSSettings.AppKey.Trim(), new GUILayoutOption[0]);
+            if (string.IsNullOrEmpty(this.adSettings.iOSSettings.AppKey.Trim()))
             {
                 EditorGUILayout.HelpBox("Please fill in the MAS app key correctly, you can find your app key on the MAS dashboard.", MessageType.Error);
             }
@@ -177,8 +177,8 @@ namespace Yodo1.MAS
             //this.adSettings.iOSSettings.GlobalRegion = EditorGUILayout.BeginToggleGroup("Global", this.adSettings.iOSSettings.GlobalRegion);
 
             //Set AdMob App ID
-            this.adSettings.iOSSettings.AdmobAppID = EditorGUILayout.TextField("AdMob App ID", this.adSettings.iOSSettings.AdmobAppID, new GUILayoutOption[0]);
-            if (string.IsNullOrEmpty(this.adSettings.iOSSettings.AdmobAppID))
+            this.adSettings.iOSSettings.AdmobAppID = EditorGUILayout.TextField("AdMob App ID", this.adSettings.iOSSettings.AdmobAppID.Trim(), new GUILayoutOption[0]);
+            if (string.IsNullOrEmpty(this.adSettings.iOSSettings.AdmobAppID.Trim()))
             {
                 EditorGUILayout.HelpBox("A null or incorrect value will cause a crash when it builds. Please make sure to copy Admob App ID from MAS dashboard.", MessageType.Info);
             }
