@@ -67,7 +67,7 @@ namespace Yodo1.MAS
             //Add AdMob App ID
             if (settings.androidSettings.GooglePlayStore)
             {
-                string admobAppIdValue = settings.androidSettings.AdmobAppID;
+                string admobAppIdValue = settings.androidSettings.AdmobAppID.Trim();
                 if (string.IsNullOrEmpty(admobAppIdValue))
                 {
                     Debug.LogError("[Yodo1 Mas] MAS Android AdMob App ID is null, please check the configuration.");
@@ -91,7 +91,7 @@ namespace Yodo1.MAS
             string channelValue = string.Empty;
             if (settings.androidSettings.ChineseAndroidStores)
             {
-                channelValue = settings.androidSettings.Channel;
+                channelValue = settings.androidSettings.Channel.Trim();
                 if (string.IsNullOrEmpty(channelValue))
                 {
                     Debug.LogError("[Yodo1 Mas] MAS Android Channel is null, please check the configuration.");

@@ -62,9 +62,9 @@ namespace Yodo1.MAS
 
             string appKey = string.Empty;
 #if UNITY_ANDROID
-            appKey = settings.androidSettings.AppKey;
+            appKey = settings.androidSettings.AppKey.Trim();
 #elif UNITY_IOS
-            appKey = settings.iOSSettings.AppKey;
+            appKey = settings.iOSSettings.AppKey.Trim();
 #endif
             Debug.Log("[Yodo1 Mas] The SDK has been initialized, the app key is " + appKey);
             Yodo1U3dMas.InitWithAppKey(appKey);
