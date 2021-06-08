@@ -47,6 +47,7 @@ namespace Yodo1.MAS
             "u679fj5vs4.skadnetwork",
             "uw77j35x4d.skadnetwork",
             "v72qych5uu.skadnetwork",
+            "wg4vff78zm.skadnetwork",
             "yclnxrl5pm.skadnetwork",
             "2fnua5tdw4.skadnetwork",
             "3qcr597p9d.skadnetwork",
@@ -57,21 +58,16 @@ namespace Yodo1.MAS
             "av6w8kgt66.skadnetwork",
             "cstr6suwn9.skadnetwork",
             "e5fvkxwrpn.skadnetwork",
-            "ecpz2srf59.skadnetwork",
             "f38h382jlk.skadnetwork",
-            "hjevpa356n.skadnetwork",
-            "k674qkevps.skadnetwork",
             "kbd757ywx3.skadnetwork",
-            "ludvb6z3bs.skadnetwork",
             "n6fk4nfna4.skadnetwork",
             "p78axxw29g.skadnetwork",
             "s39g8k73mm.skadnetwork",
-            "v9wttpbfk9.skadnetwork",
             "wzmmz9fp6w.skadnetwork",
-            "y2ed4ez56y.skadnetwork",
             "ydx93a7ass.skadnetwork",
             "zq492l623r.skadnetwork",
             "24t9a8vw3c.skadnetwork",
+            "294l99pt4k.skadnetwork",
             "32z4fx6l9h.skadnetwork",
             "523jb4fst2.skadnetwork",
             "54nzkqm89y.skadnetwork",
@@ -85,33 +81,42 @@ namespace Yodo1.MAS
             "ggvn48r87g.skadnetwork",
             "glqzh8vgby.skadnetwork",
             "gta9lk7p23.skadnetwork",
+            "k674qkevps.skadnetwork",
+            "kbmxgpxpgc.skadnetwork",
+            "ludvb6z3bs.skadnetwork",
             "n9x2a789qt.skadnetwork",
             "pwa73g5rt2.skadnetwork",
-            "wg4vff78zm.skadnetwork",
+            "r45fhb6rf7.skadnetwork",
+            "rvh3l7un93.skadnetwork",
+            "x8jxxk4ff5.skadnetwork",
             "xy9t38ct57.skadnetwork",
             "zmvfpc5aq8.skadnetwork",
             "n38lu8286q.skadnetwork",
+            "v9wttpbfk9.skadnetwork",
+            "22mmun2rn5.skadnetwork",
             "252b5q8x7y.skadnetwork",
             "9g2aggbj52.skadnetwork",
             "dzg6xy7pwj.skadnetwork",
             "f73kdq92p3.skadnetwork",
             "hdw39hrw9y.skadnetwork",
+            "x8uqf25wch.skadnetwork",
             "y45688jllp.skadnetwork",
+            "97r2b46745.skadnetwork",
+            "b9bk5wbcq9.skadnetwork",
+            "mls7yz5dvl.skadnetwork",
             "w9q455wk68.skadnetwork",
             "su67r6k2v3.skadnetwork",
             "737z793b9f.skadnetwork",
             "r26jy69rpl.skadnetwork",
-            "22mmun2rn5.skadnetwork",
             "238da6jt44.skadnetwork",
             "44n7hlldy6.skadnetwork",
             "488r3q3dtq.skadnetwork",
             "52fl2v3hgk.skadnetwork",
             "5tjdwbrq8w.skadnetwork",
-            "97r2b46745.skadnetwork",
             "9yg77x724h.skadnetwork",
+            "ecpz2srf59.skadnetwork",
             "gvmwg8q7h5.skadnetwork",
             "lr83yxwka7.skadnetwork",
-            "mls7yz5dvl.skadnetwork",
             "n66cz3y3bx.skadnetwork",
             "nzq8sh4pbs.skadnetwork",
             "pu4na253f3.skadnetwork",
@@ -119,9 +124,10 @@ namespace Yodo1.MAS
             "yrqqpx2mcb.skadnetwork",
             "z4gj7hsk7h.skadnetwork",
             "4dzt52r2t5.skadnetwork",
-            "bvpn9ufa9b.skadnetwork",
             "f7s53z58qe.skadnetwork",
-            "7953jerfzd.skadnetwork"
+            "mp6xlyr22a.skadnetwork",
+            "x44k69ngh6.skadnetwork",
+            "7953jerfzd.skadnetwork",
         };
 
         [PostProcessBuild()]
@@ -135,6 +141,8 @@ namespace Yodo1.MAS
                 {
                     UpdateIOSPlist(pathToBuiltProject, settings);
                     UpdateIOSProject(pathToBuiltProject);
+                    CopyDirectory("Assets/Yodo1/MAS/Command/", pathToBuiltProject, null);
+                    StartPodsProcess(pathToBuiltProject, "open_repo_update.command");
                 }
 #endif
             }
@@ -151,6 +159,13 @@ namespace Yodo1.MAS
                 }
 #endif
             }
+        }
+
+        public static void StartPodsProcess(string path, string podcommand)
+        {
+            var proc = new System.Diagnostics.Process();
+            proc.StartInfo.FileName = Path.Combine(path, podcommand);
+            proc.Start();
         }
 
         #region iOS Content

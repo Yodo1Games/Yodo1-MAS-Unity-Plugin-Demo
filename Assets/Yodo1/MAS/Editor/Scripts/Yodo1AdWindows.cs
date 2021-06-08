@@ -6,13 +6,12 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine.Networking;
 using System.Collections;
 
 namespace Yodo1.MAS
 {
-  
+
     public class Yodo1AdWindows : EditorWindow
     {
         private static string app_key = string.Empty;
@@ -106,7 +105,7 @@ namespace Yodo1.MAS
             if (!string.IsNullOrEmpty(appKey))
             {
                 string api = "https://sdk.mas.yodo1.com/v1/unity/setup/" + appKey;
-#if UNITY_2018
+#if UNITY_2018_1_OR_NEWER
                 string response = HttpGet(api);
                 Dictionary<string, object> obj = (Dictionary<string, object>)Yodo1JSON.Deserialize(response);
                 Debug.Log("response:" + response);
@@ -147,7 +146,7 @@ namespace Yodo1.MAS
                     result = "MAS App Key not found. please fill in correctly.";
                 }
 #else
-                ApiCallback callback = delegate(string response)
+                ApiCallback callback = delegate (string response)
                 {
                     Dictionary<string, object> obj = (Dictionary<string, object>)Yodo1JSON.Deserialize(response);
                     Debug.Log("response:" + response);
@@ -188,7 +187,7 @@ namespace Yodo1.MAS
                         result = "MAS App Key not found. please fill in correctly.";
                     }
 
-                }; 
+                };
                 EditorCoroutineRunner.StartEditorCoroutine(SendUrl(api, callback));
 #endif
             }
@@ -221,7 +220,7 @@ namespace Yodo1.MAS
             GUILayout.EndScrollView();
         }
 
-#endregion
+        #endregion
 
         private void DrawContent()
         {
@@ -442,7 +441,8 @@ namespace Yodo1.MAS
                 }
                 else
                 {
-                    callback?.Invoke(www.text);
+                    //callback?.Invoke(www.text);
+                    callback(www.text);
                 }
             }
         }
