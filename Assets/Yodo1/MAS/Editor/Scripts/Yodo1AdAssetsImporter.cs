@@ -21,11 +21,6 @@ namespace Yodo1.MAS
                 //DeleteFiles_Deprecated();
                 Yodo1AdSettings settings = Yodo1AdSettingsSave.Load();
                 Yodo1AdSettingsSave.UpdateDependencies(settings);
-#if UNITY_2018_1_OR_NEWER
-#else
-
-                Yodo1PostProcess.GenerateGradle(settings);
-#endif
             }
         }
     }

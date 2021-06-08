@@ -1,26 +1,95 @@
 ﻿using UnityEngine;
+using System.Collections;
 using Yodo1.MAS;
 
 public class Yodo1AdsTest : MonoBehaviour
 {
     void Start()
     {
-        Yodo1U3dMas.SetGDPR(true);
-        Yodo1U3dMas.SetCOPPA(false);
-        Yodo1U3dMas.SetCCPA(false);
+        SetPrivacy(true, false, false);
+        SetDelegates();
+        InitializeSdk();
+    }
+
+    void OnGUI()
+    {
+        int buttonHeight = Screen.height / 13;
+        int buttonWidth = Screen.width / 2;
+        int buttonSpace = buttonHeight / 2;
+        int startHeight = buttonHeight / 2;
+
+        if (GUI.Button(new Rect(Screen.width / 4, startHeight, buttonWidth, buttonHeight), "Show Banner Ad"))
+        {
+            if (Yodo1U3dMas.IsBannerAdLoaded())
+            {
+                int align = Yodo1U3dBannerAlign.BannerTop | Yodo1U3dBannerAlign.BannerHorizontalCenter;
+                Yodo1U3dMas.ShowBannerAd(align);
+            }
+            else
+            {
+                Debug.Log("[Yodo1 Mas] Banner ad has not been cached.");
+            }
+        }
+
+        if (GUI.Button(new Rect(Screen.width / 4, startHeight + buttonHeight + buttonSpace, buttonWidth, buttonHeight), "Dismiss Banner Ad"))
+        {
+            Yodo1U3dMas.DismissBannerAd();
+        }
+
+        if (GUI.Button(new Rect(Screen.width / 4, startHeight + buttonHeight * 2 + buttonSpace * 2, buttonWidth, buttonHeight), "Show Interstitial Ad"))
+        {
+            if (Yodo1U3dMas.IsInterstitialAdLoaded())
+            {
+                Yodo1U3dMas.ShowInterstitialAd();
+            }
+            else
+            {
+                Debug.Log("[Yodo1 Mas] Interstitial ad has not been cached.");
+            }
+
+        }
+
+        if (GUI.Button(new Rect(Screen.width / 4, startHeight + buttonHeight * 3 + buttonSpace * 3, buttonWidth, buttonHeight), "Show Rewarded Ad"))
+        {
+            if (Yodo1U3dMas.IsRewardedAdLoaded())
+            {
+                Yodo1U3dMas.ShowRewardedAd();
+            }
+            else
+            {
+                Debug.Log("[Yodo1 Mas] Reward video ad has not been cached.");
+            }
+        }
+    }
+
+    private void SetPrivacy(bool gdpr, bool coppa, bool ccpa)
+    {
+        Yodo1U3dMas.SetGDPR(gdpr);
+        Yodo1U3dMas.SetCOPPA(coppa);
+        Yodo1U3dMas.SetCCPA(ccpa);
+    }
+
+    private void InitializeSdk()
+    {
+        Yodo1U3dMas.InitializeSdk();
+    }
+
+    private void SetDelegates()
+    {
         Yodo1U3dMas.SetInitializeDelegate((bool success, Yodo1U3dAdError error) =>
         {
             Debug.Log("[Yodo1 Mas] InitializeDelegate, success:" + success + ", error: \n" + error.ToString());
 
             if (success)
-            {// Initialize successful
+            {
+                StartCoroutine(BannerCoroutine());
             }
             else
-            { // Initialize failure
+            {
 
             }
         });
-        Yodo1U3dMas.InitializeSdk();
+
         Yodo1U3dMas.SetBannerAdDelegate((Yodo1U3dAdEvent adEvent, Yodo1U3dAdError error) =>
         {
             Debug.Log("[Yodo1 Mas] BannerdDelegate:" + adEvent.ToString() + "\n" + error.ToString());
@@ -78,54 +147,22 @@ public class Yodo1AdsTest : MonoBehaviour
         });
     }
 
-    void OnGUI()
-    {
-        int buttonHeight = Screen.height / 13;
-        int buttonWidth = Screen.width / 2;
-        int buttonSpace = buttonHeight / 2;
-        int startHeight = buttonHeight / 2;
+    bool isBannerShown = false;
 
-        if (GUI.Button(new Rect(Screen.width / 4, startHeight, buttonWidth, buttonHeight), "Show Banner Ad"))
+    IEnumerator BannerCoroutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+        if (isBannerShown == false)
         {
             if (Yodo1U3dMas.IsBannerAdLoaded())
             {
-                int align = Yodo1U3dBannerAlign.BannerTop | Yodo1U3dBannerAlign.BannerHorizontalCenter;
-                Yodo1U3dMas.ShowBannerAd(align);
+                Yodo1U3dMas.ShowBannerAd();
             }
             else
             {
-                Debug.Log("[Yodo1 Mas] Banner ad has not been cached.");
+                StartCoroutine(BannerCoroutine());
             }
         }
 
-        if (GUI.Button(new Rect(Screen.width / 4, startHeight + buttonHeight + buttonSpace, buttonWidth, buttonHeight), "Dismiss Banner Ad"))
-        {
-            Yodo1U3dMas.DismissBannerAd();
-        }
-
-        if (GUI.Button(new Rect(Screen.width / 4, startHeight + buttonHeight * 2 + buttonSpace * 2, buttonWidth, buttonHeight), "Show Interstitial Ad"))
-        {
-            if (Yodo1U3dMas.IsInterstitialAdLoaded())
-            {
-                Yodo1U3dMas.ShowInterstitialAd();
-            }
-            else
-            {
-                Debug.Log("[Yodo1 Mas] Interstitial ad has not been cached.");
-            }
-
-        }
-
-        if (GUI.Button(new Rect(Screen.width / 4, startHeight + buttonHeight * 3 + buttonSpace * 3, buttonWidth, buttonHeight), "Show Rewarded Ad"))
-        {
-            if (Yodo1U3dMas.IsRewardedAdLoaded())
-            {
-                Yodo1U3dMas.ShowRewardedAd();
-            }
-            else
-            {
-                Debug.Log("[Yodo1 Mas] Reward video ad has not been cached.");
-            }
-        }
     }
 }

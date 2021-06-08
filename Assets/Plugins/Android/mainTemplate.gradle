@@ -14,10 +14,7 @@
             url "https://dl.bintray.com/yodo1/android-sdk" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
         }
         maven {
-            url "https://dl.bintray.com/ironsource-mobile/android-sdk" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
-        }
-        maven {
-            url "https://dl.bintray.com/ironsource-mobile/android-adapters" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
+            url "https://android-sdk.is.com" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
         }
         maven {
             url "https://fyber.bintray.com/marketplace" // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:12
@@ -34,7 +31,7 @@ apply plugin: 'com.android.library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 // Android Resolver Dependencies Start
-    implementation 'com.yodo1.mas:full:4.0.5' // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:13
+    implementation 'com.yodo1.mas:full:4.1.0' // Assets/Yodo1/MAS/Editor/Dependencies/Yodo1MasAndroidDependencies.xml:13
 // Android Resolver Dependencies End
 **DEPS**}
 
