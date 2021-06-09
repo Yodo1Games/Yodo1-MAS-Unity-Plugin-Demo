@@ -82,7 +82,8 @@ public class Yodo1AdsTest : MonoBehaviour
 
             if (success)
             {
-                StartCoroutine(BannerCoroutine());
+                //StartCoroutine(BannerCoroutine());
+                Yodo1U3dMas.ShowBannerAd();
             }
             else
             {
@@ -147,22 +148,22 @@ public class Yodo1AdsTest : MonoBehaviour
         });
     }
 
-    bool isBannerShown = false;
+    //bool isBannerShown = false;
 
-    IEnumerator BannerCoroutine()
-    {
-        yield return new WaitForSeconds(2.0f);
-        if (isBannerShown == false)
-        {
-            if (Yodo1U3dMas.IsBannerAdLoaded())
-            {
-                Yodo1U3dMas.ShowBannerAd();
-            }
-            else
-            {
-                StartCoroutine(BannerCoroutine());
-            }
-        }
+    //IEnumerator BannerCoroutine()
+    //{
+    //    yield return new WaitForSeconds(2.0f);
+    //    if (isBannerShown == false)
+    //    {
+    //        if (Yodo1U3dMas.IsBannerAdLoaded())
+    //        {
+    //            Yodo1U3dMas.ShowBannerAd();
+    //        }
+    //        else
+    //        {
+    //            StartCoroutine(BannerCoroutine());
+    //        }
+    //    }
 
-    }
+    //}
 }
